@@ -11,7 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export const AppBar = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const colors = tokens(theme.pallete.mode);
   const colorMode = useContext(ColorModeContext);
 
   return (
@@ -30,7 +30,7 @@ export const AppBar = () => {
       {/* Icon Buttons */}
       <Box display="flex">
         <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === "dark" ? (
+          {theme.pallete.mode === "dark" ? (
             <DarkModeOutlinedIcon />
           ) : (
             <LightModeOutlinedIcon />

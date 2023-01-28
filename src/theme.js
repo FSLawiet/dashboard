@@ -1,7 +1,7 @@
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
 
-// Color design tokens export
+// Color Design Tokens
 export const tokens = (mode) => ({
   ...(mode === "dark"
     ? {
@@ -119,16 +119,15 @@ export const tokens = (mode) => ({
         },
       }),
 });
-
-// Mui theme settings
+// MUI Theme Settings
 export const themeSettings = (mode) => {
   const colors = tokens(mode);
+
   return {
-    pallete: {
+    palette: {
       mode: mode,
       ...(mode === "dark"
         ? {
-            // pallete values for dark mode
             primary: {
               main: colors.primary[500],
             },
@@ -145,7 +144,7 @@ export const themeSettings = (mode) => {
             },
           }
         : {
-            // pallete values for light mode
+            // palette values for light mode
             primary: {
               main: colors.primary[100],
             },
@@ -163,30 +162,30 @@ export const themeSettings = (mode) => {
           }),
     },
     typography: {
-      fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+      fontFamily: ["Segoe UI", "sans-serif"].join(","),
       fontSize: 12,
       h1: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontFamily: ["Segoe UI", "sans-serif"].join(","),
         fontSize: 40,
       },
       h2: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontFamily: ["Segoe UI", "sans-serif"].join(","),
         fontSize: 32,
       },
       h3: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontFamily: ["Segoe UI", "sans-serif"].join(","),
         fontSize: 24,
       },
       h4: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontFamily: ["Segoe UI", "sans-serif"].join(","),
         fontSize: 20,
       },
       h5: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontFamily: ["Segoe UI", "sans-serif"].join(","),
         fontSize: 16,
       },
       h6: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontFamily: ["Segoe UI", "sans-serif"].join(","),
         fontSize: 14,
       },
     },
@@ -197,18 +196,18 @@ export const themeSettings = (mode) => {
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
-
 export const useMode = () => {
   const [mode, setMode] = useState("dark");
 
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () =>
-        setMode((prev) => (prev === "light" ? "dark" : "light")),
+      toggleColorMode: () => {
+        setMode((prev) => (prev === "light" ? "dark" : "light"));
+      },
     }),
     []
   );
-
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+
   return [theme, colorMode];
 };
